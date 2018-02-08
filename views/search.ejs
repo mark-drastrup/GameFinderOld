@@ -1,0 +1,26 @@
+<% include ./partials/landing-page-header %>
+
+    <div id="landing-header">
+ 		<h1>Welcome to GameFinder!</h1>
+        <form action="/results" method="GET" class="form-inline justify-content-center">
+            <div class="form-row align-items-center">
+                <div class="col-auto my-1">
+                    <label class="sr-only" for="inlineFormInput">Search</label>
+                    <input type="text" class="form-control mb-2" name="search" id="search" placeholder="Find awesome games">
+                </div>
+                <div class="col-auto my-1">
+                    <button type="submit" class="btn btn-primary mb-2"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <ul class="slideshow">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+<% include ./partials/footer %>

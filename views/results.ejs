@@ -1,0 +1,50 @@
+<% include ./partials/header %>
+
+<div class="container">
+    <h3>Search results</h3>
+    <div class="carousel">
+        <% for(var i = 0; i < data.length; i++) { %>
+            <% if(data[i].cover !== undefined) { %>
+                <div class="row">
+                    <div class="col-auto">
+                        <div class="card crop">
+                            <a href="/results/<%= data[i].id %>">
+                                <img src="<%= images[i] %>" class="">
+                                <div class="overlay">
+                                    <h4 class="test"><%= data[i].name %><br><br>Read more</h4>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+    <p>
+        <a class="btn btn-success" href="/">Go back</a>
+    </p>
+</div>
+
+
+
+<div class="container">
+    <h3>Search results</h3>
+    <div class="carousel">
+        <% for(var i = 0; i < data.length; i++) { %>
+            <% if(data[i].cover !== undefined) { %>
+                <div class="card" style="width: 15rem;">
+                    <img class="card-img-top" src="<%= images[i] %>">
+                    <div class="card-body">
+                        <p cæass="card-text">ZELDA</p>
+                    </div>
+                </div>
+            <% } %>
+        <% } %>
+    </div>
+    <p>
+        <a class="btn btn-success" href="/">Go back</a>
+    </p>
+</div>
+
+
+<% include ./partials/footer %>

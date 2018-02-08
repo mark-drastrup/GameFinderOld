@@ -1,0 +1,157 @@
+body {
+    background-color: #FAFAFA;
+}
+
+#game_cover {
+    margin-top: -15px;
+}
+
+#cover {
+    /*width: auto;
+    height: 300px;*/
+    margin: 15px auto ;
+}
+
+
+/*.carousel_screenshot.col-sm.slick-initialized.slick-slider {
+    width: 99%;
+}*/
+
+.crop {
+    height: 250px;
+    /*width: 400px;*/
+    overflow: hidden;
+}
+
+.crop img {
+    height: 100%;
+    width: auto;
+}
+
+/****************
+Card styles
+****************/
+
+.game-card {
+    display:block;
+    position: relative;
+    overflow: hidden;
+}
+
+.img-responsive {
+    max-width: auto;
+    height: 100%;
+}
+
+.slick-prev:before, .slick-next:before {
+    color: black;
+}
+
+.image {
+    max-width: 100%;
+    height: auto;
+}
+
+.card {
+    margin: auto 2px;
+    background-color: #28a745;
+    overflow: hidden;
+    text-align: center;
+}
+
+.card:hover img {
+    opacity: 0.3;
+    filter: grayscale(100%);
+}
+
+.card * {
+    transition: all .35s ease-in-out;
+}
+
+.overlay {
+    /*border-top: 1px solid rgba(0,0,0,.125);*/
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    transition: .5s ease-in-out;
+    background-color: rgb(40,167,69,0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.overlay:hover .test{
+    background-color: rgb(40,167,69,0.3);
+}
+
+.test {
+    color: rgba(255,255,255,0);
+}
+
+.test:hover {
+    color: rgba(255,255,255,1);
+}
+
+/****************
+Sidebar styles
+****************/
+#sidebar {  
+    margin-top: 25px;
+}
+
+/****************
+Main content styles
+****************/
+#game_container {
+    position: relative;
+    top: 200px;
+}
+
+#main-content {
+     margin-top: 16.5px;
+}
+
+#jumbotron-container {
+    height: 440px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 67px;
+}
+
+#jumbotron-background {
+    height: 100%;
+    width: 100%;
+    background-position: center center;
+    background-size: cover;
+    filter: blur(8px);
+    transform: scale(1.1);
+}
+
+
+#game-title-container {
+    position: relative;
+}
+
+#game-title-wrapper {
+    position: absolute;
+    top: -11px;
+}
+
+#game-title {
+    color: white;
+    /*margin-bottom: 180px;
+    margin-top: -11px;*/
+    font-size: 60px;
+}
+
+#game-description-container {
+    position: absolute;
+    top: 240px;
+}
