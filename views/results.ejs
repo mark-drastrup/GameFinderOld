@@ -1,29 +1,32 @@
 <% include ./partials/header %>
 
-<div class="container">
-    <h3>Search results</h3>
-    <div class="carousel">
-        <% for(var i = 0; i < data.length; i++) { %>
-            <% if(data[i].cover !== undefined) { %>
-                <div class="row">
-                    <div class="col-auto">
-                        <div class="card crop">
-                            <a href="/results/<%= data[i].id %>">
-                                <img src="<%= images[i] %>" class="">
-                                <div class="overlay">
-                                    <h4 class="test"><%= data[i].name %><br><br>Read more</h4>
-                                </div>
-                            </a>
+    <section class="container">
+        <div class="row" id="suggestions">
+            <h3>Results for "<%= query.toUpperCase() %>"</h3>
+            <div class="owl-carousel">
+                <% for(var i = 0; i < data.length; i++) { %>
+                    <% if(data[i].cover !== undefined) { %>
+                        <div class="card">
+                            <div class="crop item">
+                                <a href="/results/<%= data[i].id %>">
+                                    <img src="<%= images[i] %>">
+                                    <div class="overlay">
+                                        <h3 class="overlay-text">Read more</h3>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"><%= data[i].name %></p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-            <% } %>
-        <% } %>
-    </div>
-    <p>
-        <a class="btn btn-success" href="/">Go back</a>
-    </p>
-</div>
+                    <% } %>
+                <% } %>
+            </div>
+        </div>
+    </section>
+
+
+
 
 
 

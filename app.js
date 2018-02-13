@@ -1,8 +1,11 @@
 var express = require("express"),
     app = express();
-    
+
+require("dotenv").config(); 
+
 const igdb = require('igdb-api-node').default;
-const client = igdb('edfd6a2a88c93f386e7b629be931cbb6');
+const client = igdb(process.env.APIKey);
+
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -21,17 +24,19 @@ app.get("/results", function(req, res) {
     var query = req.query.search;
     client.games({
     search: query, // Search for user input
-    limit: 30, // Limit to 10 results
-    expand: ["genres"]
+    limit: 30, // Limit to 30 results
+    filters: {
+        'version_parent.not_exists': '1',
+        'category.eq': '0'
+        },
     },
     [
       "name",
       "url",
       "cover",
-      "id",
-      "game.genres"
+      "id"
     ]).then(response => {
-        // response.body contains the parsed JSON response to this query
+        // Response.body contains the parsed JSON response to this query
         var games = response.body;
         
         for(var i = games.length - 1; i >= 0; i--) {
@@ -40,7 +45,7 @@ app.get("/results", function(req, res) {
             }
         }
         
-        // iterating over all games for images 
+        // Iterating over all games for images 
         var images = []; 
         for(var i = 0; i < games.length; i++) {
             if(games[i].cover) {
@@ -49,9 +54,9 @@ app.get("/results", function(req, res) {
                 }, "cover_big", "jpg"));
             }
         }
-        
+
         // Render results page and send data
-        res.render("results", {data: games, images: images});
+        res.render("results", {data: games, images: images, query:query});
     }).catch(error => {
         throw error;
     });
@@ -90,12 +95,24 @@ app.get("/results/:id", function(req, res) {
         // response.body contains the parsed JSON response to this query
         var data = response.body;
 
-        console.log(data[0].games[0].cover);
-
         // store image of game cover
         var image = client.image({
             cloudinary_id: data[0].cover.cloudinary_id
         }, "cover_big", "jpg");
+
+        // iterating through all related games and store covers 
+        var covers = []; 
+        for(var i = 0; i < data[0].games.length; i++) {
+            if(data[0].games[i].cover !== undefined) {
+                covers.push(client.image({
+                    cloudinary_id: data[0].games[i].cover.cloudinary_id
+                }, "cover_big", "jpg"));
+            }
+        }
+
+        //console.log(covers);
+
+        //console.log(data[0].games[0]);
         
         //store screenshots for jumbotron
         var jumbotron = client.image({
@@ -103,7 +120,7 @@ app.get("/results/:id", function(req, res) {
         }, "screenshot_huge", "jpg");
         
         // Render individual game page and send data
-        res.render("game", {data:data, image:image, jumbotron:jumbotron});
+        res.render("description", {data:data, image:image, jumbotron:jumbotron, covers:covers});
     }).catch(error => {
         throw error;
     });
