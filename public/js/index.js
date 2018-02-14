@@ -1,10 +1,4 @@
 $(document).ready(function(){
-  $('.carousel').slick({
-      infinite: true,
-      slidesToShow: 5,
-      slidesToScroll: 5
-  });
-
   $('.owl-carousel').owlCarousel({
     loop:true,
     margin:30,

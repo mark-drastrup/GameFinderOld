@@ -25,29 +25,4 @@
         </div>
     </section>
 
-
-
-
-
-
-<div class="container">
-    <h3>Search results</h3>
-    <div class="carousel">
-        <% for(var i = 0; i < data.length; i++) { %>
-            <% if(data[i].cover !== undefined) { %>
-                <div class="card" style="width: 15rem;">
-                    <img class="card-img-top" src="<%= images[i] %>">
-                    <div class="card-body">
-                        <p cæass="card-text">ZELDA</p>
-                    </div>
-                </div>
-            <% } %>
-        <% } %>
-    </div>
-    <p>
-        <a class="btn btn-success" href="/">Go back</a>
-    </p>
-</div>
-
-
 <% include ./partials/footer %>
