@@ -184,3 +184,19 @@ Results styles
 .search-result {
     text-transform: capitalize;
 }
+
+.owl-nav {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.owl-prev, .owl-next {
+    color: #FFF;
+    font-size: 14px;
+    margin: 5px;
+    padding: 4px 7px;
+    background: #D6D6D6;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 3px;
+}

@@ -4,7 +4,6 @@ $(document).ready(function(){
         margin:30,
         responsiveClass:true,
         nav: true,
-        dots: true,
         responsive:{
             0:{
                 items:1,
