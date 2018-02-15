@@ -2,7 +2,7 @@
 
     <section class="container">
         <div class="row" id="suggestions">
-            <h3>Results for "<%= query.toUpperCase() %>"</h3>
+            <h3 class="search-result">Results for: <%= query %></h3>
             <div class="owl-carousel">
                 <% for(var i = 0; i < data.length; i++) { %>
                     <% if(data[i].cover !== undefined) { %>
