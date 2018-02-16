@@ -201,25 +201,20 @@ Results styles
     border-radius: 3px;
 }
 
+.owl-prev {
+    float: left;
+}
+
+.owl-next {
+    float: right;
+}
+
 /****************
 Responsive styles
 ****************/
 
 @media screen and (max-width: 992px) {
-    #game-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    #main-content {
-        order: 1;
-    }
-
-    #suggestions {
-        order: 2;
-    }
-
     #sidebar {
-        order: 3;
+        display: none;
     }
 }
