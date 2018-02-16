@@ -7,13 +7,20 @@ $(document).ready(function(){
         responsive:{
             0:{
                 items:1,
-                nav:true
+                nav:true,
+                loop:true
             },
             600:{
-                items:3,
-                nav:true
+                items:2,
+                nav:true,
+                loop:true,
             },
-            1000:{
+            768:{
+                items:3,
+                nav:true,
+                loop:true
+            },
+            1200:{
                 items:5,
                 nav:true,
                 loop:true

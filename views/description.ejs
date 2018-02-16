@@ -8,7 +8,7 @@
         </div>
     </div>
 
-    <div class="container" id="game_container">
+    <div class="container" id="game-container">
         <div class="row">
         <aside class="col-sm-auto" id="sidebar">
             <div id="game_cover">
@@ -80,7 +80,7 @@
             <% } %>
         </aside>
         
-        <section class="col-sm" id="main-content">
+        <section class="col-sm-12 col-lg" id="main-content">
         <div id="game-title-container">
             <div id="game-title-wrapper">
                 <h2 id="game-title"><%= game.name %></h2>
@@ -108,8 +108,8 @@
 
         </section>
         </div>
-    <section class="container">
-        <div class="row" id="suggestions">
+    <section class="container" id="suggestions">
+        <div class="row">
             <h3>You'll might also like</h3>
             <div class="owl-carousel">
                 <% for(var i = 0; i < game.games.length; i++) { %>

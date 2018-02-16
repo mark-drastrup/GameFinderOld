@@ -121,7 +121,7 @@ Sidebar styles
 /****************
 Main content styles
 ****************/
-#game_container {
+#game-container {
     position: relative;
     top: 200px;
 }
@@ -199,4 +199,27 @@ Results styles
     display: inline-block;
     cursor: pointer;
     border-radius: 3px;
+}
+
+/****************
+Responsive styles
+****************/
+
+@media screen and (max-width: 992px) {
+    #game-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #main-content {
+        order: 1;
+    }
+
+    #suggestions {
+        order: 2;
+    }
+
+    #sidebar {
+        order: 3;
+    }
 }
