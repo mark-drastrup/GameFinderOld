@@ -70,6 +70,7 @@ app.get("/results/:id", function(req, res) {
         "developers",
         "genres",
         "themes",
+        "platforms",
         "games"]
     },
     [
@@ -86,6 +87,7 @@ app.get("/results/:id", function(req, res) {
         "rating",
         "pegi",
         "esrb",
+        "platforms.name",
         "aggregated_rating",
         "game.genres",
         "game.developers",
@@ -94,7 +96,7 @@ app.get("/results/:id", function(req, res) {
     ]).then(response => {
         // response.body contains the parsed JSON response to this query
         var data = response.body;
-
+        
         // store image of game cover
         var image = client.image({
             cloudinary_id: data[0].cover.cloudinary_id

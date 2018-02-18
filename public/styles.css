@@ -166,6 +166,10 @@ Main content styles
     font-size: 60px;
 }
 
+#platforms {
+    color:white;
+}
+
 #game-description-container {
     /*position: absolute;
     top: 240px;*/
