@@ -4,6 +4,7 @@ $(document).ready(function(){
         margin:30,
         responsiveClass:true,
         nav: true,
+        navText: ["<i class='fa fa-angle-left fa-3x'></i>", "<i class='fa fa-angle-right fa-3x'></i>"],
         responsive:{
             0:{
                 items:1,

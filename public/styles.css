@@ -187,7 +187,8 @@ Results styles
 
 .owl-nav {
     margin-top: 10px;
-    text-align: center;
+    position: relative;
+    top: -56%;
 }
 
 .owl-prev, .owl-next {
@@ -198,15 +199,20 @@ Results styles
     background: #D6D6D6;
     display: inline-block;
     cursor: pointer;
-    border-radius: 3px;
+    background-color: black;
+    opacity: 0.5;
 }
 
 .owl-prev {
     float: left;
+    position: relative;
+    left: -2px;
 }
 
 .owl-next {
     float: right;
+    position: relative;
+    left: 2px;
 }
 
 /****************
