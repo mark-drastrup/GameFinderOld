@@ -34,7 +34,8 @@ app.get("/results", function(req, res) {
       "name",
       "url",
       "cover",
-      "id"
+      "id",
+      "screenshots"
     ]).then(response => {
         // Response.body contains the parsed JSON response to this query
         var games = response.body;
@@ -52,6 +53,16 @@ app.get("/results", function(req, res) {
                 images.push(client.image({
                     cloudinary_id: games[i].cover.cloudinary_id
                 }, "cover_big", "jpg"));
+            }
+        }
+
+        // Background image
+        var background = [];
+        for(var i = 0; i < games[0].screenshots.length; i++) {
+            if(games[0].screenshots !== undefined) {
+                background.push(client.image({
+                    cloudinary_id: games[0].screenshots[i].cloudinary_id
+                }, "1080p", "jpg"));
             }
         }
 
