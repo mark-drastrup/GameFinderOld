@@ -96,7 +96,7 @@ app.get("/results/:id", function(req, res) {
     ]).then(response => {
         // response.body contains the parsed JSON response to this query
         var data = response.body;
-        
+
         // store image of game cover
         var image = client.image({
             cloudinary_id: data[0].cover.cloudinary_id
@@ -112,9 +112,18 @@ app.get("/results/:id", function(req, res) {
             }
         }
 
-        //console.log(covers);
+        // Concatenate string of platforms
+        function platformString() {
+            var str = "";
+            for(var i = 0; i < data[0].platforms.length; i++) {
+                if(data[0].platforms !== undefined) {
+                    str += data[0].platforms[i].name + ", "
+                }
+            }
+            return str.replace(/,(\s+)?$/, '');
+        }
 
-        //console.log(data[0].games[0]);
+        var platforms = platformString();
         
         //store screenshots for jumbotron
         var jumbotron = client.image({
@@ -122,7 +131,7 @@ app.get("/results/:id", function(req, res) {
         }, "screenshot_huge", "jpg");
         
         // Render individual game page and send data
-        res.render("description", {data:data, image:image, jumbotron:jumbotron, covers:covers});
+        res.render("description", {data:data, image:image, jumbotron:jumbotron, covers:covers, platforms:platforms});
     }).catch(error => {
         throw error;
     });

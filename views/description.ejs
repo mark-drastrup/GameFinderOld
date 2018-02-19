@@ -86,14 +86,7 @@
                 <h2 id="game-title"><%= game.name %></h2>
                 <p id="platforms">
                     <span class="font-weight-bold">Platforms: </span>
-                    <% for(var i = 0; i < game.platforms.length; i++) { %>
-                        <% if(game.platforms !== undefined) { %>
-                            <%= game.platforms[i].name %> 
-                        <% } %>
-                        <% if(i !== game.platforms.length - 1) { %>
-                        ,
-                        <% } %>
-                    <% } %>
+                        <%= platforms %> 
                 </p>
             </div>
         </div>
