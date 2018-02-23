@@ -237,3 +237,20 @@ Responsive styles
         display: none;
     }
 }
+
+
+
+/**********************************
+Test styles for new search results
+***********************************/
+.card-test {
+    width: 200px;
+    margin-right: 30px;
+    margin-bottom: 15px;
+}
+
+
+.img-test {
+    display: block;
+    width: 100% !important;
+}

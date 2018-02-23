@@ -26,17 +26,15 @@
     </section>
 
     <section class="container">
+        <h3 class="search-result">Results for: <%= query %></h3>
         <div class="row" id="results-2">
-            <h3 class="search-result">Results for: <%= query %></h3>
-            
-                 <% for(var i = 0; i < data.length; i++) { %>
-                    
-                    <% if(data[i].cover !== undefined) { %>
-                    <div class="col-sm-4">
-                         <div class="card">
+            <% for(var i = 0; i < data.length; i++) { %>
+                <% if(data[i].cover !== undefined) { %>
+                    <div class="col-sm-6 col-md-3">
+                         <div class="card card-test">
                             <div class="crop item">
                                 <a href="/results/<%= data[i].id %>">
-                                    <img src="<%= images[i] %>">
+                                    <img src="<%= images[i] %>" class="img-test">
                                     <div class="overlay">
                                         <h3 class="overlay-text">Read more</h3>
                                     </div>
@@ -47,10 +45,8 @@
                             </div>
                         </div>
                     </div>
-                    <% } %>
-                
                 <% } %>
-            
+            <% } %>
         </div>
     </section>
 
