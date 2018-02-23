@@ -56,16 +56,6 @@ app.get("/results", function(req, res) {
             }
         }
 
-        // Background image
-        var background = [];
-        for(var i = 0; i < games[0].screenshots.length; i++) {
-            if(games[0].screenshots !== undefined) {
-                background.push(client.image({
-                    cloudinary_id: games[0].screenshots[i].cloudinary_id
-                }, "1080p", "jpg"));
-            }
-        }
-
         // Render results page and send data
         res.render("results", {data: games, images: images, query:query});
     }).catch(error => {

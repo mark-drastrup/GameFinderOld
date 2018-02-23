@@ -1,7 +1,7 @@
 <% include ./partials/header %>
 
     <section class="container">
-        <div class="row" id="suggestions">
+        <div class="row" id="results">
             <h3 class="search-result">Results for: <%= query %></h3>
             <div class="owl-carousel">
                 <% for(var i = 0; i < data.length; i++) { %>
@@ -22,6 +22,35 @@
                     <% } %>
                 <% } %>
             </div>
+        </div>
+    </section>
+
+    <section class="container">
+        <div class="row" id="results-2">
+            <h3 class="search-result">Results for: <%= query %></h3>
+            
+                 <% for(var i = 0; i < data.length; i++) { %>
+                    
+                    <% if(data[i].cover !== undefined) { %>
+                    <div class="col-sm-4">
+                         <div class="card">
+                            <div class="crop item">
+                                <a href="/results/<%= data[i].id %>">
+                                    <img src="<%= images[i] %>">
+                                    <div class="overlay">
+                                        <h3 class="overlay-text">Read more</h3>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <p class="card-text"><%= data[i].name %></p>
+                            </div>
+                        </div>
+                    </div>
+                    <% } %>
+                
+                <% } %>
+            
         </div>
     </section>
 
