@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 body {
     background-color: #FAFAFA;
+    font-family: "Roboto", sans-serif;
 }
 
 #game_cover {
@@ -235,6 +238,12 @@ Responsive styles
 @media screen and (max-width: 992px) {
     #sidebar {
         display: none;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #game-title-container {
+        top: -110px;
     }
 }
 
