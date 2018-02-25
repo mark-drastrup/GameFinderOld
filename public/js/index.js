@@ -15,6 +15,7 @@ $(document).ready(function(){
                 items:2,
                 nav:true,
                 loop:true,
+                margin: 40
             },
             768:{
                 items:3,

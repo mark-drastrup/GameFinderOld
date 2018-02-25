@@ -159,7 +159,7 @@ Main content styles
 
 #game-title-wrapper {
     position: absolute;
-    top: -11px;
+    top: -6px;
 }
 
 #game-title {
@@ -235,15 +235,27 @@ Results styles
 Responsive styles
 ****************/
 
+@media screen and (max-width: 1199px) {
+    .overlay-text {
+        padding-top: 40%;
+    }
+}
+
 @media screen and (max-width: 992px) {
     #sidebar {
         display: none;
+    }
+    .overlay-text {
+        padding-top: 50%;
     }
 }
 
 @media screen and (max-width: 767px) {
     #game-title-container {
         top: -110px;
+    }
+    .overlay-text {
+        padding-top: 50%;
     }
 }
 
