@@ -74,6 +74,7 @@ Card styles
     font-size: 14px;
 }
 
+
 .card:hover img {
     opacity: 0.3;
     filter: grayscale(100%);
@@ -83,8 +84,8 @@ Card styles
     transition: all .35s ease-in-out;
 }
 
+
 .overlay {
-    /*border-top: 1px solid rgba(0,0,0,.125);*/
     position: absolute;
     top: 0;
     bottom: 0;
@@ -112,6 +113,7 @@ Card styles
 .overlay-text:hover {
     color: rgba(255,255,255,1);
 }
+
 
 /****************
 Sidebar styles
@@ -275,3 +277,113 @@ Test styles for new search results
     display: block;
     width: 100% !important;
 }
+
+
+
+
+
+
+
+
+
+.grid-item {
+    width: 200px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    margin-left: 0px;
+    display: flex;
+    justify-content: center; 
+}
+.grid-item--width2 { 
+    width: 264px; 
+}
+
+.grid-item-background {
+    background-color: #28a745;
+}
+
+.grid-item:hover img {
+    opacity: 0.3;
+    filter: grayscale(100%);
+}
+
+.grid-item * {
+    transition: all .35s ease-in-out;
+}
+
+.masonry-overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    transition: .5s ease-in-out;
+    background-color: rgba(40,167,69,0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+}
+
+.masonry-overlay:hover .masonry-overlay-text{
+    background-color: linear-gradient(135deg, rgba(40,167,69,0.5), rgba(41,105,168,0.5));
+}
+
+.masonry-overlay > .masonry-overlay-text {
+    color: #fff;
+    opacity: 0;
+    /*height: 100%;*/
+    /*padding-top: 55%;*/
+    align-self: center;
+}
+
+.masonry-overlay:hover > .masonry-overlay-text {
+    visibility: visible;
+    opacity: 0.9;
+    transition: all .35s ease-in-out;
+}
+
+#brick_container {
+    display: none;
+}
+
+
+
+.ball-loader {
+    width: 100px;
+    height: 23.33333px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+  }
+  .ball-loader-ball {
+    will-change: transform;
+    height: 23.33333px;
+    width: 23.33333px;
+    border-radius: 50%;
+    background-color: #28a745;
+    position: absolute;
+    animation: grow 1s ease-in-out infinite alternate;
+  }
+  .ball-loader-ball.ball1 {
+    left: 0;
+    transform-origin: 100% 50%;
+  }
+  .ball-loader-ball.ball2 {
+    left: 50%;
+    transform: translateX(-50%) scale(1);
+    animation-delay: 0.33s;
+  }
+  .ball-loader-ball.ball3 {
+    right: 0;
+    animation-delay: 0.66s;
+  }
+  @keyframes grow {
+    to {
+      transform: translateX(-50%) scale(0);
+    }
+  }
+  

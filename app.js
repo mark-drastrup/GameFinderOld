@@ -24,7 +24,7 @@ app.get("/results", function(req, res) {
     var query = req.query.search;
     client.games({
     search: query, // Search for user input
-    limit: 30, // Limit to 30 results
+    limit: 50, // Limit to 50 results
     filters: {
         'version_parent.not_exists': '1',
         'category.eq': '0'
@@ -57,7 +57,8 @@ app.get("/results", function(req, res) {
         }
 
         // Render results page and send data
-        res.render("results", {data: games, images: images, query:query});
+        //res.render("results", {data: games, images: images, query:query});
+        res.render("masonry", {data: games, images: images, query:query});
     }).catch(error => {
         throw error;
     });

@@ -1,0 +1,37 @@
+<% include ./partials/header %>
+
+    <br>
+
+    <div class="ball-loader">
+        <div class="ball-loader-ball ball1"></div>
+        <div class="ball-loader-ball ball2"></div>
+        <div class="ball-loader-ball ball3"></div>
+      </div>
+
+    <section class="container" style="display: flex; justify-content: center;">
+        <div style="width: 100%">
+            <h3 class="search-result">Results for: <%= query %></h3>
+            <div class="row" id="brick_container">
+                <div>
+                        <% for(var i = 0; i < data.length; i++) { %>
+                            <% if(data[i].cover !== undefined) { %>
+                                <div class="grid-item grid-item--width2">
+                                    <div class="grid-item-background">
+                                        <a href="/results/<%= data[i].id %>">
+                                            <img src="<%= images[i] %>">
+                                            <div class="masonry-overlay">
+                                                <h3 class="masonry-overlay-text">Read more</h3>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            <% } %>
+                        <% } %>
+                </div>
+                
+            </div>
+        </div>
+        
+    </section>
+
+<% include ./partials/footer %>
