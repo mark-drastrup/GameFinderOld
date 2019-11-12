@@ -1,11 +1,10 @@
 var express = require("express"),
-    app = express();
+  app = express();
 
-require("dotenv").config(); 
+require("dotenv").config();
 
-const igdb = require('igdb-api-node').default;
+const igdb = require("igdb-api-node").default;
 const client = igdb(process.env.APIKey);
-
 
 app.set("view engine", "ejs");
 app.use(express.static("public"));
@@ -16,66 +15,68 @@ app.use(express.static("public"));
 
 // Index - search for games
 app.get("/", function(req, res) {
-    res.render("search");
+  res.render("search");
 });
 
 // Show results of search
 app.get("/results", function(req, res) {
-    var query = req.query.search;
-    client.games({
-    search: query, // Search for user input
-    limit: 50, // Limit to 50 results
-    filters: {
-        'version_parent.not_exists': '1',
-        'category.eq': '0'
-        },
-    },
-    [
-      "name",
-      "url",
-      "cover",
-      "id",
-      "screenshots"
-    ]).then(response => {
-        // Response.body contains the parsed JSON response to this query
-        var games = response.body;
-        
-        for(var i = games.length - 1; i >= 0; i--) {
-            if(games[i].cover === undefined) {
-                games.splice(i, 1);
-            }
+  var query = req.query.search;
+  client
+    .games(
+      {
+        search: query, // Search for user input
+        limit: 50, // Limit to 50 results
+        filters: {
+          "version_parent.not_exists": "1",
+          "category.eq": "0"
         }
-        
-        // Iterating over all games for images 
-        var images = []; 
-        for(var i = 0; i < games.length; i++) {
-            if(games[i].cover) {
-                images.push(client.image({
-                    cloudinary_id: games[i].cover.cloudinary_id
-                }, "cover_big", "jpg"));
-            }
-        }
+      },
+      ["name", "url", "cover", "id", "screenshots"]
+    )
+    .then(response => {
+      // Response.body contains the parsed JSON response to this query
+      var games = response.body;
 
-        // Render results page and send data
-        //res.render("results", {data: games, images: images, query:query});
-        res.render("masonry", {data: games, images: images, query:query});
-    }).catch(error => {
-        throw error;
+      for (var i = games.length - 1; i >= 0; i--) {
+        if (games[i].cover === undefined) {
+          games.splice(i, 1);
+        }
+      }
+
+      // Iterating over all games for images
+      var images = [];
+      for (var i = 0; i < games.length; i++) {
+        if (games[i].cover) {
+          images.push(
+            client.image(
+              {
+                cloudinary_id: games[i].cover.cloudinary_id
+              },
+              "cover_big",
+              "jpg"
+            )
+          );
+        }
+      }
+
+      // Render results page and send data
+      //res.render("results", {data: games, images: images, query:query});
+      res.render("masonry", { data: games, images: images, query: query });
+    })
+    .catch(error => {
+      throw error;
     });
 });
 
 // Display description of individual game
 app.get("/results/:id", function(req, res) {
-    client.games({
+  client
+    .games(
+      {
         ids: [req.params.id],
-        expand: ["game",
-        "developers",
-        "genres",
-        "themes",
-        "platforms",
-        "games"]
-    },
-    [
+        expand: ["game", "developers", "genres", "themes", "platforms", "games"]
+      },
+      [
         "name",
         "summary",
         "storyline",
@@ -95,50 +96,73 @@ app.get("/results/:id", function(req, res) {
         "game.developers",
         "developers.name",
         "game.games"
-    ]).then(response => {
-        // response.body contains the parsed JSON response to this query
-        var data = response.body;
+      ]
+    )
+    .then(response => {
+      // response.body contains the parsed JSON response to this query
+      var data = response.body;
 
-        // store image of game cover
-        var image = client.image({
-            cloudinary_id: data[0].cover.cloudinary_id
-        }, "cover_big", "jpg");
+      // store image of game cover
+      var image = client.image(
+        {
+          cloudinary_id: data[0].cover.cloudinary_id
+        },
+        "cover_big",
+        "jpg"
+      );
 
-        // iterating through all related games and store covers 
-        var covers = []; 
-        for(var i = 0; i < data[0].games.length; i++) {
-            if(data[0].games[i].cover !== undefined) {
-                covers.push(client.image({
-                    cloudinary_id: data[0].games[i].cover.cloudinary_id
-                }, "cover_big", "jpg"));
-            }
+      // iterating through all related games and store covers
+      var covers = [];
+      for (var i = 0; i < data[0].games.length; i++) {
+        if (data[0].games[i].cover !== undefined) {
+          covers.push(
+            client.image(
+              {
+                cloudinary_id: data[0].games[i].cover.cloudinary_id
+              },
+              "cover_big",
+              "jpg"
+            )
+          );
         }
+      }
 
-        // Concatenate string of platforms
-        function platformString() {
-            var str = "";
-            for(var i = 0; i < data[0].platforms.length; i++) {
-                if(data[0].platforms !== undefined) {
-                    str += data[0].platforms[i].name + ", "
-                }
-            }
-            return str.replace(/,(\s+)?$/, '');
+      // Concatenate string of platforms
+      function platformString() {
+        var str = "";
+        for (var i = 0; i < data[0].platforms.length; i++) {
+          if (data[0].platforms !== undefined) {
+            str += data[0].platforms[i].name + ", ";
+          }
         }
+        return str.replace(/,(\s+)?$/, "");
+      }
 
-        var platforms = platformString();
-        
-        //store screenshots for jumbotron
-        var jumbotron = client.image({
-            cloudinary_id: data[0].screenshots[0].cloudinary_id
-        }, "screenshot_huge", "jpg");
-        
-        // Render individual game page and send data
-        res.render("description", {data:data, image:image, jumbotron:jumbotron, covers:covers, platforms:platforms});
-    }).catch(error => {
-        throw error;
+      var platforms = platformString();
+
+      //store screenshots for jumbotron
+      var jumbotron = client.image(
+        {
+          cloudinary_id: data[0].screenshots[0].cloudinary_id
+        },
+        "screenshot_huge",
+        "jpg"
+      );
+
+      // Render individual game page and send data
+      res.render("description", {
+        data: data,
+        image: image,
+        jumbotron: jumbotron,
+        covers: covers,
+        platforms: platforms
+      });
+    })
+    .catch(error => {
+      throw error;
     });
 });
-    
+
 app.listen(process.env.PORT || 3000, function() {
-    console.log("Game app has now started");
+  console.log("Game app has now started");
 });
